@@ -54,8 +54,8 @@ def create_vacations_list(chose_platform: int) -> list:
     JSONSaver.instance_list = vacations_list
     return vacations_list
 
-def filter_vacancies(search_vacancy: str, filter_words: str or list, chose_platform: int) -> list:
-    '''Фильтр по заданным требованиям'''
+def filter_vacancies(search_vacancy: str, filter_words, chose_platform: int) -> list:
+    """ Фукция для фильтра списка экзеров ваканский по заданным требованиям"""
     filtered_list = []
     if isinstance(filter_words, list):
         for instance in create_vacations_list(chose_platform):
@@ -69,12 +69,14 @@ def filter_vacancies(search_vacancy: str, filter_words: str or list, chose_platf
                             true_list.append(False)
                     if False not in true_list:
                         filtered_list.append(instance)
-    elif isinstance(filter_words, list):
+
+    elif isinstance(filter_words, str):
         for instance in create_vacations_list(chose_platform):
             if instance.snippet:
                 if search_vacancy.lower() in instance.vacation_name.lower():
                     if filter_words in instance.snippet.lower():
                         filtered_list.append(instance)
+
     return filtered_list
 
 def sort_vacancies(filtered_vacancies: list) -> list:

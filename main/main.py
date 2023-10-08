@@ -1,5 +1,5 @@
 from utils import filter_vacancies, sort_vacancies, get_top_vacancies
-from jsonsaver import JSONSaver
+from save_to_json import JSONSaver
 
 
 def user_interaction() -> None:

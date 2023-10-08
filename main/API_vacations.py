@@ -24,10 +24,6 @@ class HeadHunterAPI(AbstractAPIClass):
         if not self.response.ok:
             raise Exception('HeadHunterAPI problem')
 
-    def get_vacations(self) -> list:
-        self.get_vacations_list = requests.get(HeadHunterAPI, params=self.params, headers=self.header)
-        return self.get_vacations_list.json()['items']
-
     @property
     def text(self):
         return self.__text
@@ -36,8 +32,9 @@ class HeadHunterAPI(AbstractAPIClass):
     def text(self, new: str):
         self.__text = new
 
-    def get_vacations(self) -> list:
-        '''Возвращает список вакансий, для поиска слова в полях вакансий используется self.text'''
+    def get_vacancies(self) -> list:
+        """метод get_vacancies возвращает список ваканский
+        для поиска слова в полях ваканскии на сайте используется параметр self.text = 'str' """
 
         self.vacations_list = requests.get(HeadHunterAPI.URL, params=self.params, headers=self.header)
         return self.vacations_list.json()['items']
@@ -66,7 +63,7 @@ class SuperJobAPI(AbstractAPIClass):
     def keyword(self, new: str):
         self.__keyword = new
 
-        def get_vacancies(self) -> list:
-            '''Возвращает список вакансий, для поиска слова используется параметр self.keyword'''
-            self.vacations_list = requests.get(SuperJobAPI.URL, params=self.params, headers=self.header)
-            return self.vacations_list.json()['objects']
+    def get_vacancies(self) -> list:
+        '''Возвращает список вакансий, для поиска слова используется параметр self.keyword'''
+        self.vacations_list = requests.get(SuperJobAPI.URL, params=self.params, headers=self.header)
+        return self.vacations_list.json()['objects']
